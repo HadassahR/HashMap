@@ -1,4 +1,3 @@
-import java.sql.Array;
 import java.util.*;
 
 public class OurHashMap<K,V> implements Map<K,V> {
@@ -35,7 +34,15 @@ public class OurHashMap<K,V> implements Map<K,V> {
 
     @Override
     public boolean containsValue(Object value) {
-
+        for (List<Entry> entry : values){
+            if (entry != null) {
+                for (Entry entry1 : entry){
+                    if (entry1.value == value) {
+                        return true;
+                    }
+                }
+            }
+        }
         return false;
     }
 
@@ -95,7 +102,9 @@ public class OurHashMap<K,V> implements Map<K,V> {
 
     @Override
     public void putAll(Map m) {
-
+//        for (java.util.Map.Entry<K,V> entry : m.entrySet()) {
+//            put(entry.getKey(), entry.getValue());
+//        }
     }
 
     @Override
@@ -105,6 +114,13 @@ public class OurHashMap<K,V> implements Map<K,V> {
 
     @Override
     public Set keySet() {
+//        Set<K> kSet = new HashSet<K>();
+//        for (List<Entry> entry : values) {
+//            for (Entry e : entry) {
+//                kSet.add((K) e.key);
+//            }
+//        }
+//        return kSet;
         return null;
     }
 
