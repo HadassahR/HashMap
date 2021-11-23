@@ -115,20 +115,17 @@ class OurHashMapTest {
         assertTrue(map.containsKey("RUSSIAN"));
         assertFalse(map.containsKey("ENGLISH"));
     }
-//
-//    @Test
-//    void containsValue() {
-//        // given
-//        OurHashMap<String,String> map = new OurHashMap<>();
-//
-//        // when
-//        map.put("HEBREW", "SHALOM");
-//        map.put("FRENCH", "BONJOUR");
-//        map.put("RUSSIAN", "PRIVIT");
-//        map.put("JAPANESE", "NE HOW");
-//        map.put("MANDARIN", "CONICHIWA");
-//
-//        // then
-//
-//    }
+
+    @Test
+    void containsValue() { // NOT YET WORKING
+        // given
+        OurHashMap<String,String> map = new OurHashMap<>();
+
+        // when
+        map.put("HEBREW", "SHALOM");
+
+        // then
+        assertTrue(map.containsValue("SHALOM"));
+        assertFalse(map.containsValue("GOODBYE"));
+    }
 }

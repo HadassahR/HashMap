@@ -80,12 +80,14 @@ public class OurHashMap<K,V> implements Map<K,V> {
 
     @Override
     public V remove(Object key) {
+//        int hashcode = key.hashCode();
+//        int index = Math.abs(hashcode) % SIZE;
         return null;
     }
 
     @Override
     public void putAll(Map m) {
-
+        git s
     }
 
     @Override
