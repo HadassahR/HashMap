@@ -128,4 +128,21 @@ class OurHashMapTest {
         assertTrue(map.containsValue("SHALOM"));
         assertFalse(map.containsValue("GOODBYE"));
     }
+
+    @Test
+    void remove() {
+        // given
+        OurHashMap<String,String> map = new OurHashMap<>();
+
+        // when
+        map.put("HEBREW", "SHALOM");
+        map.put("ENGLISH", "HI");
+        String removed = map.remove("ENGLISH");
+
+        // then
+        assertEquals(removed, "HI");
+        assertTrue(map.containsKey("HEBREW"));
+        assertFalse(map.containsKey("ENGLISH"));
+        assertFalse(map.containsValue("HI"));
+    }
 }

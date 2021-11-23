@@ -35,6 +35,7 @@ public class OurHashMap<K,V> implements Map<K,V> {
 
     @Override
     public boolean containsValue(Object value) {
+
         return false;
     }
 
@@ -80,8 +81,15 @@ public class OurHashMap<K,V> implements Map<K,V> {
 
     @Override
     public V remove(Object key) {
-//        int hashcode = key.hashCode();
-//        int index = Math.abs(hashcode) % SIZE;
+        int hashcode = key.hashCode();
+        int index = Math.abs(hashcode) % SIZE;
+        List<Entry> value = values[index];
+        for (Entry e : value) {
+            if (e.key == key){
+                value.remove(e);
+                return (V) e.value;
+            }
+        }
         return null;
     }
 
