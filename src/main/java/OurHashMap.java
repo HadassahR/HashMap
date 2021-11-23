@@ -29,7 +29,7 @@ public class OurHashMap<K,V> implements Map<K,V> {
 
     @Override
     public boolean containsKey(Object key) {
-        return get(key) != null;
+        return this.get(key) != null;
     }
 
     @Override
@@ -102,7 +102,9 @@ public class OurHashMap<K,V> implements Map<K,V> {
 
     @Override
     public void putAll(Map m) {
-        // To be implemented
+        m.forEach((key, value) -> {
+            this.put((K)key, (V) value);
+        });
     }
 
     @Override

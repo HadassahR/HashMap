@@ -187,4 +187,20 @@ class OurHashMapTest {
         assertTrue(values.contains("SHALOM"));
         assertFalse(values.contains("HEBREW"));
     }
+
+    @Test
+    void putALl() {
+        // given
+        Map<String, String> expectedMap = new HashMap<>();
+        OurHashMap<String,String> map = new OurHashMap<>();
+
+        // when
+        expectedMap.put("ENGLISH", "HELLO");
+        expectedMap.put("HEBREW", "SHALOM");
+        expectedMap.put("SPANISH", "HOLA");
+        map.putAll(expectedMap);
+
+        // then
+        assertEquals(expectedMap, map);
+    }
 }
