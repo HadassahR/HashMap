@@ -1,4 +1,3 @@
-import java.sql.Array;
 import java.util.*;
 
 public class OurHashMap<K,V> implements Map<K,V> {
@@ -35,6 +34,15 @@ public class OurHashMap<K,V> implements Map<K,V> {
 
     @Override
     public boolean containsValue(Object value) {
+        for (List<Entry> entryList : values){
+            if (entryList != null) {
+                for (Entry entry : entryList){
+                    if (entry.value == value) {
+                        return true;
+                    }
+                }
+            }
+        }
         return false;
     }
 
@@ -80,12 +88,21 @@ public class OurHashMap<K,V> implements Map<K,V> {
 
     @Override
     public V remove(Object key) {
+        int hashcode = key.hashCode();
+        int index = Math.abs(hashcode) % SIZE;
+        List<Entry> entryList = values[index];
+        for (Entry e : entryList) {
+            if (e.key == key){
+                entryList.remove(e);
+                return (V) e.value;
+            }
+        }
         return null;
     }
 
     @Override
     public void putAll(Map m) {
-
+        // To be implemented
     }
 
     @Override
@@ -95,12 +112,28 @@ public class OurHashMap<K,V> implements Map<K,V> {
 
     @Override
     public Set keySet() {
-        return null;
+        Set<K> kSet = new HashSet<K>();
+        for (List<Entry> entryList : this.values){
+            if (entryList != null) {
+                for (Entry entry : entryList) {
+                    kSet.add((K) entry.key);
+                }
+            }
+        }
+        return kSet;
     }
 
     @Override
     public Collection values() {
-        return null;
+        List<V> vals = new ArrayList<>();
+        for (List<Entry> entryList : this.values) {
+            if (entryList != null) {
+                for (Entry entry : entryList) {
+                    vals.add((V) entry.value);
+                }
+            }
+        }
+        return vals;
     }
 
     @Override

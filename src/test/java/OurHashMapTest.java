@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class OurHashMapTest {
@@ -115,20 +117,74 @@ class OurHashMapTest {
         assertTrue(map.containsKey("RUSSIAN"));
         assertFalse(map.containsKey("ENGLISH"));
     }
-//
-//    @Test
-//    void containsValue() {
-//        // given
-//        OurHashMap<String,String> map = new OurHashMap<>();
-//
-//        // when
-//        map.put("HEBREW", "SHALOM");
-//        map.put("FRENCH", "BONJOUR");
-//        map.put("RUSSIAN", "PRIVIT");
-//        map.put("JAPANESE", "NE HOW");
-//        map.put("MANDARIN", "CONICHIWA");
-//
-//        // then
-//
-//    }
+
+    @Test
+    void containsValue() {
+        // given
+        OurHashMap<String,String> map = new OurHashMap<>();
+
+        // when
+        map.put("HEBREW", "SHALOM");
+
+        // then
+        assertTrue(map.containsValue("SHALOM"));
+        assertFalse(map.containsValue("GOODBYE"));
+    }
+
+    @Test
+    void remove() {
+        // given
+        OurHashMap<String,String> map = new OurHashMap<>();
+
+        // when
+        map.put("HEBREW", "SHALOM");
+        map.put("ENGLISH", "HI");
+        String removed = map.remove("ENGLISH");
+
+        // then
+        assertEquals(removed, "HI");
+        assertTrue(map.containsKey("HEBREW"));
+        assertFalse(map.containsKey("ENGLISH"));
+        assertFalse(map.containsValue("HI"));
+    }
+
+    @Test
+    void keySet() {
+        // given
+        OurHashMap<String,String> map = new OurHashMap<>();
+
+        // when
+        map.put("ENGLISH", "HEY");
+        map.put("ENGLISH", "HELLO");
+        map.put("SPANISH", "HOLA");
+        map.put("HEBREW", "SHALOM");
+        map.put("FRENCH", "BONJOUR");
+
+        Set keySet = map.keySet();
+
+        // then
+        assertEquals(4, keySet.size());
+        assertTrue(keySet.contains("ENGLISH"));
+        assertFalse(keySet.contains("HEY"));
+    }
+    
+    @Test
+    void values () {
+        // given
+        OurHashMap<String,String> map = new OurHashMap<>();
+
+        // when
+        map.put("ENGLISH", "HEY");
+        map.put("SPANISH", "HOLA");
+        map.put("HEBREW", "SHALOM");
+        map.put("FRENCH", "BONJOUR");
+        map.put("RANDOM", "HOLA");
+
+        Collection values = map.values();
+
+        // then
+        assertEquals(5, values.size());
+        assertTrue(values.contains("SHALOM"));
+        assertFalse(values.contains("HEBREW"));
+    }
 }
