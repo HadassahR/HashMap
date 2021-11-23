@@ -125,7 +125,15 @@ public class OurHashMap<K,V> implements Map<K,V> {
 
     @Override
     public Collection values() {
-        return null;
+        List<V> vals = new ArrayList<>();
+        for (List<Entry> entryList : this.values) {
+            if (entryList != null) {
+                for (Entry entry : entryList) {
+                    vals.add((V) entry.value);
+                }
+            }
+        }
+        return vals;
     }
 
     @Override
