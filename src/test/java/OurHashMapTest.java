@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -150,7 +152,7 @@ class OurHashMapTest {
     }
 
     @Test
-    void keySet() { // NOT YET WORKING
+    void keySet() {
         // given
         OurHashMap<String,String> map = new OurHashMap<>();
 
@@ -164,6 +166,8 @@ class OurHashMapTest {
 
         // then
         assertEquals(4, keySet.size());
+        assertTrue(keySet.contains("ENGLISH"));
+        assertFalse(keySet.contains("HEY"));
 
     }
 }

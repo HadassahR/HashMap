@@ -34,10 +34,10 @@ public class OurHashMap<K,V> implements Map<K,V> {
 
     @Override
     public boolean containsValue(Object value) {
-        for (List<Entry> entry : values){
-            if (entry != null) {
-                for (Entry entry1 : entry){
-                    if (entry1.value == value) {
+        for (List<Entry> entryList : values){
+            if (entryList != null) {
+                for (Entry entry : entryList){
+                    if (entry.value == value) {
                         return true;
                     }
                 }
@@ -90,10 +90,10 @@ public class OurHashMap<K,V> implements Map<K,V> {
     public V remove(Object key) {
         int hashcode = key.hashCode();
         int index = Math.abs(hashcode) % SIZE;
-        List<Entry> value = values[index];
-        for (Entry e : value) {
+        List<Entry> entryList = values[index];
+        for (Entry e : entryList) {
             if (e.key == key){
-                value.remove(e);
+                entryList.remove(e);
                 return (V) e.value;
             }
         }
@@ -102,9 +102,7 @@ public class OurHashMap<K,V> implements Map<K,V> {
 
     @Override
     public void putAll(Map m) {
-//        for (java.util.Map.Entry<K,V> entry : m.entrySet()) {
-//            put(entry.getKey(), entry.getValue());
-//        }
+        // To be implemented
     }
 
     @Override
@@ -114,14 +112,15 @@ public class OurHashMap<K,V> implements Map<K,V> {
 
     @Override
     public Set keySet() {
-//        Set<K> kSet = new HashSet<K>();
-//        for (List<Entry> entry : values) {
-//            for (Entry e : entry) {
-//                kSet.add((K) e.key);
-//            }
-//        }
-//        return kSet;
-        return null;
+        Set<K> kSet = new HashSet<K>();
+        for (List<Entry> entryList : this.values){
+            if (entryList != null) {
+                for (Entry entry : entryList) {
+                    kSet.add((K) entry.key);
+                }
+            }
+        }
+        return kSet;
     }
 
     @Override
